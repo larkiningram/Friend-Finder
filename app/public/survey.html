@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>survey</title>
+    <title>Survey</title>
 
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet"> -->
 
 </head>
 
@@ -24,59 +24,92 @@
         <hr width="93%">
 
         <form>
+            <h3 class="question">NAME</h3>
+            <input id="name" type="text"><br></br>
+
+            <h3 class="question">PHOTO</h3>
+            <input id="photo" type="text"><br></br>
+
             QUESTION 1 (between 1 and 5):
             <h3 id="q1" class="question"></h3>
-            <input type="number" name="quantity" min="1" max="5"><br></br>
+            <input id="a1" type="number" name="quantity" min="1" max="5"><br></br>
 
             QUESTION 2 (between 1 and 5):
             <h3 id="q2" class="question"></h3>
-            <input type="number" name="quantity" min="1" max="5"><br></br>
+            <input id="a2" type="number" name="quantity" min="1" max="5"><br></br>
 
             QUESTION 3 (between 1 and 5):
             <h3 id="q3" class="question"></h3>
-            <input type="number" name="quantity" min="1" max="5"><br></br>
+            <input id="a3" type="number" name="quantity" min="1" max="5"><br></br>
 
             QUESTION 4 (between 1 and 5):
             <h3 id="q4" class="question"></h3>
-            <input type="number" name="quantity" min="1" max="5"><br></br>
+            <input id="a4" type="number" name="quantity" min="1" max="5"><br></br>
 
             QUESTION 5 (between 1 and 5):
             <h3 id="q5" class="question"></h3>
-            <input type="number" name="quantity" min="1" max="5"><br></br>
+            <input id="a5" type="number" name="quantity" min="1" max="5"><br></br>
+
+            <button type="submit" id="sub-btn" class="btn btn-lg btn-dark"> Submit </button>
 
         </form>
     </div>
 
     <script type="text/javascript">
 
-        var questions = [
-            {
-                question: "question1",
-                name: "q1"
-            },
-            {
-                question: "question2",
-                name: "q2"
-            },
-            {
-                question: "question3",
-                name: "q3"
-            },
-            {
-                question: "question4",
-                name: "q4"
-            },
-            {
-                question: "question5",
-                name: "q5"
-            }
-        ];
+        // var questions = [
+        //     {
+        //         question: "question1",
+        //         name: "q1"
+        //     },
+        //     {
+        //         question: "question2",
+        //         name: "q2"
+        //     },
+        //     {
+        //         question: "question3",
+        //         name: "q3"
+        //     },
+        //     {
+        //         question: "question4",
+        //         name: "q4"
+        //     },
+        //     {
+        //         question: "question5",
+        //         name: "q5"
+        //     }
+        // ];
 
-        function populate() {
+        // function populate() {
 
-            
 
-        }
+
+        // }
+
+        $("#sub-btn").on("click", function (event) {
+            event.preventDefault();
+            console.log("click")
+            var newResult = {
+                name: $("#name").val(),
+                photo: $("#photo").val(),
+                scores: [
+                    +$("#a1").val(),
+                    +$("#a2").val(),
+                    +$("#a3").val(),
+                    +$("#a4").val(),
+                    +$("#a5").val()
+                ]
+            };
+
+            console.log(newResult);
+
+            $.post("/api/friends", newResult)
+                .then(function (data) {
+                    console.log("friends: ", data);
+                    alert("Adding friend...");
+                });
+
+        })
 
 
     </script>
