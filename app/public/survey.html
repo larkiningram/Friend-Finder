@@ -18,18 +18,21 @@
 </head>
 
 <body>
-    <div class="container text-center">
+    <div class="container">
         <div class="jumbotron text-center">
 
             <h1> Survey </h1>
 
-            <hr width="93%">
 
             <h4>
                 Fill out the form below to be matched with your most compatible friend!
                 <br>
                 Rate each question based on whether you agree or disagree.
             </h4>
+
+                <hr width="93%">
+                <a href="/"><button class="btn btn-info btn-lg"><span class="fa fa-eye"></span> Go Home</button></a>
+                <a href="friends"><button class="btn btn-info btn-lg"><span class="fa"></span> Go to Friends List</button></a>
         </div>
 
 
@@ -39,7 +42,7 @@
                 <input id="name" type="text"><br></br>
 
                 <label class="question">Add a url for your profile picture</label> <br>
-                <input type="url" name="pic" > <br></br>
+                <input type="url" name="pic"> <br></br>
 
                 <label id="q1" class="question"></label>
 
@@ -65,8 +68,8 @@
 
             </form>
         </div>
-        <div class="col-md-2" style="float:right">
-            <h2 class="here">You chose:</h2>
+        <div class="col-md-2 chose" style="float:right">
+            <h2 class="here"><u>You chose</u></h2>
         </div>
     </div>
 
@@ -82,7 +85,7 @@
                 name: "q2"
             },
             {
-                question: "The best and only way to use your iPhone alarm is to have an alarm setting for every possible time.",
+                question: "The best and only way to use your iPhone alarm is to have an alarm set for every possible time.",
                 name: "q3"
             },
             {
@@ -127,22 +130,12 @@
 
         populate();
 
-        // function display(ideal) {
-        //     var html = "<div class='modal'>"
-        //     html += '<div class="modal-content">'
-        //     html += '<span class="close">&times;</span><p>'
-        //     html += ideal.name
-        //     html += "</p></div></div>"
-        //     console.log(html)
-        //     $("form").html(html)
-        // }
         for (i in questions) {
             var currentQuestionNumber = (parseInt(i) + parseInt(1))
-
             $("#a" + currentQuestionNumber).on("click", function () {
                 var rating = $(this).val();
                 console.log(rating)
-                $(".here").html("<h2>You chose: </h2><h2>" + rating + "</h2>");
+                $(".here").html("<h2><u>You chose</u></h2><h2>" + rating + "</h2>");
             })
         }
 
@@ -168,8 +161,20 @@
                     alert("Adding friend...");
                 });
 
+            $(".chose").empty();
             // display("john");
+
         })
+
+
+        // function display(ideal) {
+        //     var html = "<div class='modal'>"
+        //     html += '<div class="modal-content">'
+        //     html += '<span class="close">&times;</span><p>'
+        //     html += ideal
+        //     html += "</p></div></div>"
+        //     console.log(html)
+        // }
 
 
     </script>
