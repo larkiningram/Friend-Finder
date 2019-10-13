@@ -19,58 +19,65 @@
 
 <body>
     <div class="container">
-        <div class="jumbotron text-center">
 
-            <h1> Survey </h1>
+        <h1 class="mt-3"> Survey Questions</h1>
 
+        <hr width="100%">
 
-            <h4>
-                Fill out the form below to be matched with your most compatible friend!
-                <br>
-                Rate each question based on whether you agree or disagree.
-            </h4>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
 
-                <hr width="93%">
-                <a href="/"><button class="btn btn-info btn-lg"><span class="fa fa-eye"></span> Go Home</button></a>
-                <a href="friends"><button class="btn btn-info btn-lg"><span class="fa"></span> Go to Friends List</button></a>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
-        <div class="col-md-8" style="float:left">
-            <form>
-                <label class="question">What's your name?</label> <br>
-                <input id="name" type="text"><br></br>
+        <form>
+            <h3>About you</h3>
+            <h5 class="question">Name (required)</h5>
+            <input id="name" type="text"><br></br>
 
-                <label class="question">Add a url for your profile picture</label> <br>
-                <input type="url" name="pic"> <br></br>
+            <h5 class="question">Link to Photo Image (required)</h5>
+            <input type="url" name="pic">
 
-                <label id="q1" class="question"></label>
+            <hr width="100%">
+            <h5 id="q1" class="question"></h5>
 
-                <label id="q2" class="question"></label>
+            <h5 id="q2" class="question"></h5>
 
-                <label id="q3" class="question"></label>
+            <h5 id="q3" class="question"></h5>
 
-                <label id="q4" class="question"></label>
+            <h5 id="q4" class="question"></h5>
 
-                <label id="q5" class="question"></label>
+            <h5 id="q5" class="question"></h5>
 
-                <label id="q6" class="question"></label>
+            <h5 id="q6" class="question"></h5>
 
-                <label id="q7" class="question"></label>
+            <h5 id="q7" class="question"></h5>
 
-                <label id="q8" class="question"></label>
+            <h5 id="q8" class="question"></h5>
 
-                <label id="q9" class="question"></label>
+            <h5 id="q9" class="question"></h5>
 
-                <label id="q10" class="question"></label>
+            <h5 id="q10" class="question"></h5>
 
-                <button type="submit" id="sub-btn" class="btn btn-lg btn-dark"> Submit </button>
+            <button type="submit" id="sub-btn" class="btn btn-lg btn-dark" data-toggle="modal" data-target="#myModal"> Submit </button>
 
-            </form>
-        </div>
-        <div class="col-md-2 chose" style="float:right">
-            <h2 class="here"><u>You chose</u></h2>
-        </div>
+        </form>
+
     </div>
 
     <script type="text/javascript">
@@ -123,21 +130,19 @@
                 var question = questions[i].question;
                 var currentQuestionNumber = (parseInt(i) + parseInt(1))
                 $("#q" + currentQuestionNumber).append(question);
-                var inp = '<br><input id="a' + currentQuestionNumber + '" class="rate" type="range" name="quantity" min="1" max="5"><br></br>'
+                var inp = '<select name="q" id="a' + currentQuestionNumber + '">'
+                inp += '<option value="-">Select an Option</option>'
+                inp += '<option value="1">1 (Strongly Disagree)</option>'
+                inp += '<option value="2">2</option>'
+                inp += '<option value="3">3</option>'
+                inp += '<option value="4">4</option>'
+                inp += '<option value="5">5 (Strongly Agree</option>'
+                inp += '</select><br></br>'
                 $("#q" + currentQuestionNumber).after(inp);
             };
         };
 
         populate();
-
-        for (i in questions) {
-            var currentQuestionNumber = (parseInt(i) + parseInt(1))
-            $("#a" + currentQuestionNumber).on("click", function () {
-                var rating = $(this).val();
-                console.log(rating)
-                $(".here").html("<h2><u>You chose</u></h2><h2>" + rating + "</h2>");
-            })
-        }
 
         $("#sub-btn").on("click", function (event) {
             event.preventDefault();
@@ -157,24 +162,13 @@
 
             $.post("/api/friends", newResult)
                 .then(function (data) {
-                    console.log("friends: ", data);
-                    alert("Adding friend...");
+                    $(".modal-title").text(newResult.name);
+                    $(".modal-body").text(newResult.scores);
                 });
 
-            $(".chose").empty();
             // display("john");
 
         })
-
-
-        // function display(ideal) {
-        //     var html = "<div class='modal'>"
-        //     html += '<div class="modal-content">'
-        //     html += '<span class="close">&times;</span><p>'
-        //     html += ideal
-        //     html += "</p></div></div>"
-        //     console.log(html)
-        // }
 
 
     </script>
