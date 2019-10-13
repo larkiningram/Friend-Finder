@@ -57,27 +57,21 @@ function compatibility() {
     };
 
     for (i in friends) {
-
-        var friend1 = friends[0];
-        // var friend1 = friends[(friends.length - 1)];
+        var you = parseInt(friends.length) - 1;
+        var friend1 = friends[you];
         var friend2 = friends[i];
         var totalDifference = 0;
 
         for (j in defaultScores) {
-
             var dif = Math.abs(friend1.scores[j] - friend2.scores[j]);
             totalDifference += dif;
         }
 
         if (friend1.name !== friend2.name) {
-
-
             var comp = new Comaparison(friend1.name, friend2.name, totalDifference);
             differences.push(comp);
         }
-
-    }
-
+    };
 
     differences.sort(function (a, b) {
         var keyA = a.difference,
@@ -88,8 +82,9 @@ function compatibility() {
     });
 
     ideal = differences[0]
+    // display(ideal)
     console.log("your match is:", ideal.friend);
-}
+};
 
 compatibility()
 

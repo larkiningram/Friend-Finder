@@ -19,76 +19,135 @@
 
 <body>
     <div class="container text-center">
-        <h1 class="py-3"> Survey </h1>
+        <div class="jumbotron text-center">
 
-        <hr width="93%">
+            <h1> Survey </h1>
 
-        <form>
-            <h3 class="question">NAME</h3>
-            <input id="name" type="text"><br></br>
+            <hr width="93%">
 
-            <h3 class="question">PHOTO</h3>
-            <input id="photo" type="text"><br></br>
+            <h4>
+                Fill out the form below to be matched with your most compatible friend!
+                <br>
+                Rate each question based on whether you agree or disagree.
+            </h4>
+        </div>
 
-            QUESTION 1 (between 1 and 5):
-            <h3 id="q1" class="question"></h3>
-            <input id="a1" type="number" name="quantity" min="1" max="5"><br></br>
 
-            QUESTION 2 (between 1 and 5):
-            <h3 id="q2" class="question"></h3>
-            <input id="a2" type="number" name="quantity" min="1" max="5"><br></br>
+        <div class="col-md-8" style="float:left">
+            <form>
+                <label class="question">What's your name?</label> <br>
+                <input id="name" type="text"><br></br>
 
-            QUESTION 3 (between 1 and 5):
-            <h3 id="q3" class="question"></h3>
-            <input id="a3" type="number" name="quantity" min="1" max="5"><br></br>
+                <label class="question">Add a url for your profile picture</label> <br>
+                <input type="url" name="pic" > <br></br>
 
-            QUESTION 4 (between 1 and 5):
-            <h3 id="q4" class="question"></h3>
-            <input id="a4" type="number" name="quantity" min="1" max="5"><br></br>
+                <label id="q1" class="question"></label>
 
-            QUESTION 5 (between 1 and 5):
-            <h3 id="q5" class="question"></h3>
-            <input id="a5" type="number" name="quantity" min="1" max="5"><br></br>
+                <label id="q2" class="question"></label>
 
-            <button type="submit" id="sub-btn" class="btn btn-lg btn-dark"> Submit </button>
+                <label id="q3" class="question"></label>
 
-        </form>
+                <label id="q4" class="question"></label>
+
+                <label id="q5" class="question"></label>
+
+                <label id="q6" class="question"></label>
+
+                <label id="q7" class="question"></label>
+
+                <label id="q8" class="question"></label>
+
+                <label id="q9" class="question"></label>
+
+                <label id="q10" class="question"></label>
+
+                <button type="submit" id="sub-btn" class="btn btn-lg btn-dark"> Submit </button>
+
+            </form>
+        </div>
+        <div class="col-md-2" style="float:right">
+            <h2 class="here">You chose:</h2>
+        </div>
     </div>
 
     <script type="text/javascript">
 
-        // var questions = [
-        //     {
-        //         question: "question1",
-        //         name: "q1"
-        //     },
-        //     {
-        //         question: "question2",
-        //         name: "q2"
-        //     },
-        //     {
-        //         question: "question3",
-        //         name: "q3"
-        //     },
-        //     {
-        //         question: "question4",
-        //         name: "q4"
-        //     },
-        //     {
-        //         question: "question5",
-        //         name: "q5"
-        //     }
-        // ];
+        var questions = [
+            {
+                question: "Pizza should always have pineapple on it.",
+                name: "q1"
+            },
+            {
+                question: "Top sheets are unnecessary and a waste of the water needed to wash them.",
+                name: "q2"
+            },
+            {
+                question: "The best and only way to use your iPhone alarm is to have an alarm setting for every possible time.",
+                name: "q3"
+            },
+            {
+                question: "Phone calls are more efficient than texting.",
+                name: "q4"
+            },
+            {
+                question: "The earth is flat.",
+                name: "q5"
+            },
+            {
+                question: "Vaccinations should be banned.",
+                name: "q6"
+            },
+            {
+                question: "Straws are fine.",
+                name: "q7"
+            },
+            {
+                question: "Boneless wings are the superior wing.",
+                name: "q8"
+            },
+            {
+                question: "There should be similar limitations to the places kids can go as there are for dogs.",
+                name: "q9"
+            },
+            {
+                question: "Steak should be fully cooked.",
+                name: "q10"
+            }
+        ];
 
-        // function populate() {
+        function populate() {
+            for (i in questions) {
+                var question = questions[i].question;
+                var currentQuestionNumber = (parseInt(i) + parseInt(1))
+                $("#q" + currentQuestionNumber).append(question);
+                var inp = '<br><input id="a' + currentQuestionNumber + '" class="rate" type="range" name="quantity" min="1" max="5"><br></br>'
+                $("#q" + currentQuestionNumber).after(inp);
+            };
+        };
 
+        populate();
 
-
+        // function display(ideal) {
+        //     var html = "<div class='modal'>"
+        //     html += '<div class="modal-content">'
+        //     html += '<span class="close">&times;</span><p>'
+        //     html += ideal.name
+        //     html += "</p></div></div>"
+        //     console.log(html)
+        //     $("form").html(html)
         // }
+        for (i in questions) {
+            var currentQuestionNumber = (parseInt(i) + parseInt(1))
+
+            $("#a" + currentQuestionNumber).on("click", function () {
+                var rating = $(this).val();
+                console.log(rating)
+                $(".here").html("<h2>You chose: </h2><h2>" + rating + "</h2>");
+            })
+        }
 
         $("#sub-btn").on("click", function (event) {
             event.preventDefault();
-            console.log("click")
             var newResult = {
                 name: $("#name").val(),
                 photo: $("#photo").val(),
@@ -109,6 +168,7 @@
                     alert("Adding friend...");
                 });
 
+            // display("john");
         })
 
 
