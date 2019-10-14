@@ -35,7 +35,7 @@
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                        <p id="friendName">Some text in the modal.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -43,6 +43,7 @@
                 </div>
             </div>
         </div>
+
 
 
         <form>
@@ -74,14 +75,14 @@
 
             <h5 id="q10" class="question"></h5>
 
-            <button type="submit" id="sub-btn" class="btn btn-lg btn-dark" data-toggle="modal" data-target="#myModal"> Submit </button>
+            <button type="submit" id="sub-btn" class="btn btn-lg btn-dark" data-toggle="modal" data-target="#myModal">
+                Submit </button>
 
         </form>
 
     </div>
 
     <script type="text/javascript">
-
         var questions = [
             {
                 question: "Pizza should always have pineapple on it.",
@@ -159,14 +160,15 @@
             };
 
             console.log(newResult);
+            // console.log(ideal);
 
-            $.post("/api/friends", newResult)
-                .then(function (data) {
-                    $(".modal-title").text(newResult.name);
-                    $(".modal-body").text(newResult.scores);
+            $.post("/api/friends", newResult, function (data) {
+                    console.log(data)
+                    $(".modal-title").text(data.friend);
+                    var im = '<img src="' + data.difference + '" alt="friend">'
+                    $(".modal-body").html(data.difference);
+                    console.log("hi")
                 });
-
-            // display("john");
 
         })
 
