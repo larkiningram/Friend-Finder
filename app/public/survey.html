@@ -155,7 +155,12 @@
                     +$("#a2").val(),
                     +$("#a3").val(),
                     +$("#a4").val(),
-                    +$("#a5").val()
+                    +$("#a5").val(),
+                    +$("#a6").val(),
+                    +$("#a7").val(),
+                    +$("#a8").val(),
+                    +$("#a9").val(),
+                    +$("#a10").val()
                 ]
             };
 
@@ -165,7 +170,7 @@
             $.post("/api/friends", newResult, function (data) {
                     console.log(data)
                     $(".modal-title").text(data.friend);
-                    var im = '<img src="' + data.photo + '" alt="friend">'
+                    var im = '<img width="400px" src="' + data.photo + '" alt="friend">'
                     console.log(im);
                     $(".modal-body").html($(im));
                     console.log("hi")

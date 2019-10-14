@@ -1,7 +1,7 @@
 var friends = [
     {
         "name": "Ahmed",
-        "photo": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg",
+        "photo": "https://image.shutterstock.com/image-photo/headshot-satisfied-cheerful-handsome-man-260nw-793117360.jpg",
         "scores": [
             5,
             1,
@@ -17,7 +17,7 @@ var friends = [
     },
     {
         "name": "Jared",
-        "photo": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg",
+        "photo": "https://static7.depositphotos.com/1298242/789/i/950/depositphotos_7894119-stock-photo-smiling-hispanic-man-headshot.jpg",
         "scores": [
             5,
             5,
@@ -33,7 +33,7 @@ var friends = [
     },
     {
         "name": "Mischa",
-        "photo": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg",
+        "photo": "https://previews.123rf.com/images/fizkes/fizkes1805/fizkes180500630/102258594-attractive-woman-business-leader-smiling-looking-at-camera-headshot-portrait-beautiful-elegant-busin.jpg",
         "scores": [
             5,
             1,
@@ -49,7 +49,7 @@ var friends = [
     },
     {
         "name": "Kelly",
-        "photo": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg",
+        "photo": "https://previews.123rf.com/images/sifotography/sifotography1503/sifotography150300263/37960423-headshot-portrait-of-friendly-young-male-doctor-smiling-standing-in-hospital-hallway-clinic-office-w.jpg",
         "scores": [
             5,
             1,
@@ -64,48 +64,5 @@ var friends = [
         ]
     }
 ];
-
-// var defaultScores = new Uint8Array(5);
-
-// var differences = [];
-// var ideal;
-// function compatibility() {
-//     function Comaparison(user, friend, difference) {
-//         this.user = user;
-//         this.friend = friend;
-//         this.difference = difference;
-//     };
-
-//     for (i in friends) {
-//         var you = parseInt(friends.length) - 1;
-//         var friend1 = friends[you];
-//         var friend2 = friends[i];
-//         var totalDifference = 0;
-
-//         for (j in defaultScores) {
-//             var dif = Math.abs(friend1.scores[j] - friend2.scores[j]);
-//             totalDifference += dif;
-//         }
-
-//         if (friend1.name !== friend2.name) {
-//             var comp = new Comaparison(friend1.name, friend2.name, totalDifference);
-//             differences.push(comp);
-//         }
-//     };
-
-//     differences.sort(function (a, b) {
-//         var keyA = a.difference,
-//             keyB = b.difference;
-//         if (keyA < keyB) return -1;
-//         if (keyA > keyB) return 1;
-//         return 0;
-//     });
-
-//     ideal = differences[0]
-//     // display(ideal)
-//     console.log("your match is:", ideal.friend);
-// };
-
-// compatibility()
 
 module.exports = friends;

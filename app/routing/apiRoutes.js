@@ -10,7 +10,7 @@ module.exports = function (app) {
   app.post("/api/friends", function (req, res) {
     friends.push(req.body);
     var ideal;
-    var defaultScores = new Uint8Array(5);
+    var defaultScores = new Uint8Array(10);
     var differences = [];
 
     function compatibility() {
