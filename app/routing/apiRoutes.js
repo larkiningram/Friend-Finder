@@ -15,9 +15,10 @@ module.exports = function (app) {
 
     function compatibility() {
 
-      function Comaparison(user, friend, difference) {
+      function Comaparison(user, friend, photo, difference) {
         this.user = user;
         this.friend = friend;
+        this.photo = photo;
         this.difference = difference;
       };
 
@@ -33,7 +34,7 @@ module.exports = function (app) {
         }
 
         if (friend1.name !== friend2.name) {
-          var comp = new Comaparison(friend1.name, friend2.name, totalDifference);
+          var comp = new Comaparison(friend1.name, friend2.name, friend2.photo, totalDifference);
           differences.push(comp);
         }
       };

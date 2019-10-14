@@ -165,8 +165,9 @@
             $.post("/api/friends", newResult, function (data) {
                     console.log(data)
                     $(".modal-title").text(data.friend);
-                    var im = '<img src="' + data.difference + '" alt="friend">'
-                    $(".modal-body").html(data.difference);
+                    var im = '<img src="' + data.photo + '" alt="friend">'
+                    console.log(im);
+                    $(".modal-body").html($(im));
                     console.log("hi")
                 });
 
