@@ -8,3 +8,7 @@ This is a compatibility-based "FriendFinder" application -- basically a dating a
 ---
 
 This application used HMTL, Javascript, Node.js (Express, Path, and DotEnv).
+
+---
+
+Deploy using: https://find-some-friends.herokuapp.com
